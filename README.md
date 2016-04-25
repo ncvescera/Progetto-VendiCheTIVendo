@@ -1,8 +1,8 @@
 <h1>Progetto-VendiCheTiVendo</h1>
 <b>**Branch che verrà unito al master**</b>
 <hr>
-<h1>Classi:</h1><br>
-<h2>CSV</h2><br>
+<h1>Classi:</h1>
+<h2>CSV</h2>
 <b>METODI</b><br>
 `parse (stringa, separatore)`<br>
 Converte la stringa passata in un array di stringhe, in ogni posizione dell'array ci sarà un campo della stringa letta.<br>
