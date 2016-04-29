@@ -1,0 +1,48 @@
+package vendite;
+
+import javax.swing.ImageIcon;
+
+public class Cellulare {
+    String nome;
+    String modello;
+    double costo;
+    String descrizione;
+    ImageIcon img;
+    
+    public Cellulare(String[] dati){
+        nome = dati[0];
+        modello = dati[1];
+        costo = Double.parseDouble(dati[2]);
+        descrizione = dati[3];
+        img = new ImageIcon(dati[4]);
+    }
+    
+    public String getNome(){
+        return nome;
+    }
+    
+    public String getModello(){
+        return modello;
+    }
+    
+    public double getCosto(){
+        return costo;
+    }
+    
+    public String getDescrizione(){
+        return descrizione;
+    }
+    
+    public ImageIcon getImg(){
+        return img;
+        
+    }
+    
+    public void print(){
+        System.out.println("Nome: "+nome);
+        System.out.println("Modello: "+modello);
+        System.out.println("Costo: "+costo);
+        System.out.println("Descrizione: "+descrizione);
+        System.out.println("Img: "+img.toString());
+    }
+}
