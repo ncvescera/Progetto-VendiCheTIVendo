@@ -43,7 +43,7 @@ public class SearchPhone {
          * Trova le parole chiavi della ricerca.
          * Il separatore delle parole è lo spazio
          */
-        while(indexOfSpace != -1){
+        while(indexOfSpace != -1 && indexOfSpace != 0){
             temp.add(subDa_editare.substring(0,indexOfSpace));
             subDa_editare = subDa_editare.substring(indexOfSpace);
             indexOfSpace = subDa_editare.indexOf(" ");
