@@ -3,22 +3,22 @@ package vendite;
 import javax.swing.ImageIcon;
 
 public class Cellulare {
-    String nome;
+    String marca;
     String modello;
     double costo;
     String descrizione;
     ImageIcon img;
     
     public Cellulare(String[] dati){
-        nome = dati[0];
+        marca = dati[0];
         modello = dati[1];
         costo = Double.parseDouble(dati[2]);
         descrizione = dati[3];
         img = new ImageIcon(dati[4]);
     }
     
-    public String getNome(){
-        return nome;
+    public String getMarca(){
+        return marca;
     }
     
     public String getModello(){
@@ -39,7 +39,7 @@ public class Cellulare {
     }
     
     public void print(){
-        System.out.println("Nome: "+nome);
+        System.out.println("Marca: "+marca);
         System.out.println("Modello: "+modello);
         System.out.println("Costo: "+costo);
         System.out.println("Descrizione: "+descrizione);
