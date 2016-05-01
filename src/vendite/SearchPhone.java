@@ -39,6 +39,10 @@ public class SearchPhone {
         int indexOfSpace = da_editare.indexOf(" ");
         String subDa_editare = da_editare;
         
+        /*
+         * Trova le parole chiavi della ricerca.
+         * Il separatore delle parole è lo spazio
+         */
         while(indexOfSpace != -1){
             temp.add(subDa_editare.substring(0,indexOfSpace));
             subDa_editare = subDa_editare.substring(indexOfSpace);
