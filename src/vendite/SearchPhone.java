@@ -30,6 +30,17 @@ public class SearchPhone {
 
             return risultato;
         }
+        else if(temp.isEmpty()){
+            if(da_cercare.substring(0,da_cercare.length()-1).length() > 3 ){
+                Cellulare[] ricerca_avanzata = search(da_cercare.substring(0,da_cercare.length()-1),array);
+                if(ricerca_avanzata != null)
+                    return ricerca_avanzata;
+                else
+                    return null;
+            }  
+            else
+                return null;
+        }
         else
             return null;
     }
@@ -48,7 +59,8 @@ public class SearchPhone {
             subDa_editare = subDa_editare.substring(indexOfSpace);
             indexOfSpace = subDa_editare.indexOf(" ");
         }
-        temp.add(subDa_editare);
+        if(subDa_editare.length() > 0)
+            temp.add(subDa_editare);
         
         String[] parole_chiavi = new String[temp.size()];
         temp.toArray(parole_chiavi);

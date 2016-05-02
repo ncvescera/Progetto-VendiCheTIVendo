@@ -18,7 +18,7 @@ public class Main {
         System.out.println("\nRicerca");
         
         //ricerca un cellulare nell'array di Cellulari
-        Cellulare[] ricerca = SearchPhone.search("samsung gal",cells);
+        Cellulare[] ricerca = SearchPhone.search("331110",cells);
         
         if(ricerca != null){
             for(Cellulare elem:ricerca){
