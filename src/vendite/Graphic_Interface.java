@@ -16,8 +16,10 @@ import javafx.scene.layout.Border;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 /**
@@ -42,23 +44,27 @@ public class Graphic_Interface extends JFrame implements ActionListener {
     JButton b1 = new JButton("SAMSUNG");
     JButton b2 = new JButton("Apple");
     JButton b3 = new JButton("Huwawei");
-    JButton b4 = new JButton("Nokia");
+    JButton b4 = new JButton("𐎡𐎷𐏉𐏌𐎧𐎮");
     JButton b5 = new JButton("Sony");
     JButton b6 = new JButton("HTC");
-    JButton porcodio = new JButton("Tchutchi"){
-        {
-            setSize(20,100);
-            setMaximumSize(getSize());
-        }
-            };
+    JButton add_to_cart = new JButton("Add To Cart");
+    JButton info_1 = new JButton("i");
         
-    
-    //TextArea
-    JTextArea tx = new JTextArea("BUY_PANEL");
-    
+    //TextField
+    JTextField quantita_prod1 = new JTextField();
     
     //TitledBorder
     TitledBorder border_buy_Panel = new TitledBorder("COMPRA UN TELEFONO! ZOCCOLA!");
+    
+    //JLabel
+    JLabel prod1 = new JLabel("Samsung S6 EDGE     ");
+    JLabel quantita_1 = new JLabel("Quantita:");
+    
+    //Colori
+    int red = 96;
+    int green = 144;
+    int blue = 170;
+    Color blue_pastello = new Color(red, green, blue);
     
     
     
@@ -69,30 +75,30 @@ public class Graphic_Interface extends JFrame implements ActionListener {
     public Graphic_Interface()      
     {
         //Specifiche Pannelli Prodotti
-        prodotto1.setBackground(Color.red);
-        prodotto2.setBackground(Color.blue);
-        prodotto3.setBackground(Color.yellow);
-        porcodio.setSize(40, 100);
-        porcodio.setMaximumSize(porcodio.getSize());
-        prodotto1.add(porcodio);
         
-        
+        prodotto1.setBackground(blue_pastello);
+        prodotto2.setBackground(blue_pastello);
+        prodotto3.setBackground(blue_pastello);
+        prodotto1.add(prod1);
+        prodotto1.add(quantita_1);
+        prodotto1.add(quantita_prod1);
+        prodotto1.add(add_to_cart);
+        quantita_prod1.setPreferredSize(new Dimension(20,20));
+        info_1.setForeground(Color.BLUE);
+        info_1.setFont(new Font("Comic Sanse MS", Font.BOLD, 20));
+        prodotto1.add(info_1);
         
         //Specifiche SUB_BUY_PANEL
         sub_buy_Panel.setLayout(new BoxLayout(sub_buy_Panel, BoxLayout.PAGE_AXIS));
         sub_buy_Panel.add(prodotto1);
         sub_buy_Panel.add(prodotto2);
         sub_buy_Panel.add(prodotto3);
-        
-        
-        
+       
         //Specifiche BUY_PANEL
         buy_Panel.add(sub_buy_Panel);
         buy_Panel.setPreferredSize(new Dimension(200, 200));
         buy_Panel.setBorder(border_buy_Panel);
-     
-        
-        
+    
         //Specifiche BRAND_SPANEL
         brands_Panel.setLayout(new GridLayout(1, 5));
         brands_Panel.add(b1);
@@ -110,12 +116,9 @@ public class Graphic_Interface extends JFrame implements ActionListener {
         b5.setFont(new Font("American Typewriter", Font.BOLD, 20));
         b6.setFont(new Font("American Typewriter", Font.BOLD, 20));
         
-        b1.setForeground(Color.red);
-        b2.setForeground(Color.orange);
-        b3.setForeground(Color.BLUE);
-        b4.setForeground(Color.CYAN);
-        b5.setForeground(Color.yellow);
-        b6.setForeground(Color.GREEN);
+        //Modifiche Font Label Prodotti
+        prod1.setFont(new Font("American Typewriter", Font.BOLD, 16));
+        prod1.setForeground(Color.white);
         
         //Specifiche FRAME_1
         f1.add(brands_Panel, "North");
@@ -123,7 +126,7 @@ public class Graphic_Interface extends JFrame implements ActionListener {
         String titolo_Frame_1 = "VendiCheTiVendo";
         f1.setVisible(true);
         f1.setTitle(titolo_Frame_1);
-        f1.setSize(600, 500);
+        f1.setSize(750, 500);
         f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
