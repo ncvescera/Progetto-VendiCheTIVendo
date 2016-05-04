@@ -37,6 +37,8 @@ public class Main {
         carrello.add(cells[2]);
         
         carrello.print();
+        
+        carrello.show();
     }
 
 }
