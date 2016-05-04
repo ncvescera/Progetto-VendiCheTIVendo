@@ -34,7 +34,9 @@ public class Main {
         Carrello carrello = new Carrello();
         
         carrello.add(cells[0]);
+        carrello.add(cells[1]);
         carrello.add(cells[2]);
+        carrello.add(cells[3]);
         
         carrello.print();
         

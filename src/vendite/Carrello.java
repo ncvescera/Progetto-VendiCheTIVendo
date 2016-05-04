@@ -29,9 +29,6 @@ public class Carrello {
     }
     
     public void show(){
-        Cellulare[] array_cellulari = new Cellulare[this.cellulari.size()];
-        this.cellulari.toArray(array_cellulari);
-        
-        Carrello_GUI GUI = new Carrello_GUI(array_cellulari);
+        Carrello_GUI GUI = new Carrello_GUI(this.cellulari);
     }
 }
