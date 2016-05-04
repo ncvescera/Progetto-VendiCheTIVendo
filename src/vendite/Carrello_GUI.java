@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 public class Carrello_GUI implements ActionListener{
     JFrame frame = new JFrame("Carrello");
@@ -88,9 +89,7 @@ public class Carrello_GUI implements ActionListener{
         
         
         // Serve per refreshare il JFrame
-        frame.invalidate();
-        frame.validate();
-        frame.repaint();
+        SwingUtilities.updateComponentTreeUI(frame);
         //---------------------------------//
         
         System.out.println("-----AGGIORNATO----");
