@@ -28,6 +28,15 @@ public class Main {
         }
         else
             System.out.println("Nessun cellulare trovato!");
+        
+        System.out.println("\nCarrello");
+        //Inizializzazione e uso del carrello
+        Carrello carrello = new Carrello();
+        
+        carrello.add(cells[0]);
+        carrello.add(cells[2]);
+        
+        carrello.print();
     }
 
 }
