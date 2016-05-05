@@ -103,6 +103,7 @@ public class Carrello_GUI implements ActionListener{
                 popUp.pack();
                 */
                 //JOptionPane.showMessageDialog(frame,messaggio);
+                Compra_PopUp popup = new Compra_PopUp(frame, this.cellulari);
             }
                 
         }
