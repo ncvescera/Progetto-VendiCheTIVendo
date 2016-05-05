@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Compra_PopUp extends JDialog implements ActionListener{
@@ -16,11 +17,13 @@ public class Compra_PopUp extends JDialog implements ActionListener{
     JButton annulla = new JButton("Annulla");
     JButton conferma = new JButton("Conferma");
     
+    boolean stato;
+    
     ArrayList<Cellulare> cellulari;
     
     public Compra_PopUp(JFrame frame, ArrayList<Cellulare> cellulari){
         super(frame, "Compra");
-
+        
         this.cellulari = cellulari;
         int totale = 0;
         
@@ -32,6 +35,7 @@ public class Compra_PopUp extends JDialog implements ActionListener{
         
         //annulla.setActionCommand("annulla");
         annulla.addActionListener(this);
+        conferma.addActionListener(this);
         
         panel_btn.add(conferma);
         panel_btn.add(annulla);
@@ -41,6 +45,7 @@ public class Compra_PopUp extends JDialog implements ActionListener{
         
         this.add(panel_btn,"South");
         
+        
         this.setVisible(true);
         this.pack();
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -48,7 +53,18 @@ public class Compra_PopUp extends JDialog implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals("Annulla"))
+        if(e.getActionCommand().equals("Annulla")){
+            stato = false;
             this.dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(this,"Ordine completato ! :D");
+            stato = true;
+            this.dispose();
+        }
+    }
+    
+    public boolean isEndedSucces(){
+        return stato;
     }
 }

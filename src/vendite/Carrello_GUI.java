@@ -3,6 +3,8 @@ package vendite;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -80,8 +82,9 @@ public class Carrello_GUI implements ActionListener{
             /*for(Cellulare elem:cellulari)
                 elem.print();*/
             if(cellulari.isEmpty())
-                JOptionPane.showMessageDialog(frame,"Il carrello è vuoto non puoi comprare niente !");
+                JOptionPane.showMessageDialog(frame,"Il carrello è vuoto non puoi comprare niente ! :(");
             else{
+                //boolean buon_fine = true;
                 //Da creare nuova classe che esdente JDialog per creare il PopUp della conferma dell'ordine
                 //Codice già iniziato e da migliorare solo aspetto grafico
                 /*RIGE CHE RIMARRANNO SU QUESTA CLASSE*/
@@ -103,7 +106,28 @@ public class Carrello_GUI implements ActionListener{
                 popUp.pack();
                 */
                 //JOptionPane.showMessageDialog(frame,messaggio);
-                Compra_PopUp popup = new Compra_PopUp(frame, this.cellulari);
+                
+                /*Compra_PopUp popup = new Compra_PopUp(frame, this.cellulari);
+                
+                System.out.println(popup.stato);
+                
+                cellulari.removeAll(cellulari);
+                System.out.println("Cellulari rimanenti");
+                for(Cellulare el:cellulari){
+                    el.print();
+                }*/
+                
+                /* NUOVA SCOPERTA ( dio somaro )
+                 * La classe che estende JDialog è risultata inutile
+                 * dato che non può ritornare un valore e così non è possibile capire se l'utente 
+                 * ha cliccato su annulla o su conferma.
+                 * Perciò va eliminata la classe Compra_PopUp e usato JOptionPane.showConfirmDialog()
+                
+                
+                int prova = 0;
+                prova = JOptionPane.showConfirmDialog(null,"<html><hr>Io cosa ho premuto ??","ATTENZIONE", prova);
+                System.out.println(prova);
+                */
             }
                 
         }
