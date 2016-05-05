@@ -67,37 +67,36 @@ public class Carrello_GUI implements ActionListener{
     int rm_bottoni = 0;
     @Override
     public void actionPerformed(ActionEvent e) {
-        int i,j;
+        int i;
         JButton btn = (JButton)e.getSource();
+        JPanel btn_parent = (JPanel)btn.getParent();
         int da_eliminare;
         for(i=0;i<button_number;i++){
-            if(Integer.parseInt(btn.getName()) == i){
-                System.out.println("Nome bottono: "+Integer.parseInt(btn.getName()));
-                cellulari.remove(i-rm_bottoni);
-                central_panel.remove(i-rm_bottoni);
-                System.out.println("RMButton: "+rm_bottoni);
-                System.out.println("i-rmbottoni: "+(i-rm_bottoni));
-                rm_bottoni++;
-                
-                /* Possibile soluzione al problema di sopra ( i nomi dei pannelli non corrispondono con la loro effettiva posizione)
-                 * Eliminare il pannello selezionato e poi rinominare tutti i pannelli con un i = 0
-                 * Dovrebbe essere semplice e veloce e funzionare correttamente.
-                 * Risolvendo questo problema si dovrebbe risolvere anche la gestione della lista dei Cellulari
-                */
+            if(Integer.parseInt(btn_parent.getName()) == i){
+                // rimuove della lista e dal pannello central_panel il cellulare che ha scaturito l'evento
+                cellulari.remove(i);
+                central_panel.remove(i);
+                button_number --;
+                break;
+                //-----------------------------------------------------------------------------------------//
             }
         }
-        
-        
+         
         // Serve per refreshare il JFrame
         SwingUtilities.updateComponentTreeUI(frame);
         //---------------------------------//
         
+        //rinomina tutti i pannelli dentro a central_panel dato che la loro posizione è cambiata
+        for(i=0;i<button_number;i++){
+            JPanel PNL_da_rinopminare = (JPanel)central_panel.getComponent(i);
+            PNL_da_rinopminare.setName(String.valueOf(i));
+        }
+        //----------------------------------------------------------------------------------------//
+        /* Stampa della lista per DEBUG
         System.out.println("-----AGGIORNATO----");
         for(Cellulare el:cellulari){
             System.out.println(el.getMarca() + el.getModello());
         }
-        /*for(i=0;i<this.button_number;i++){
-            if(e.get)
-        }*/    
+        */
     }
 }
