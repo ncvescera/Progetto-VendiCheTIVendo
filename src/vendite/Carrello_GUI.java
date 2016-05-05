@@ -5,8 +5,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -15,12 +17,15 @@ public class Carrello_GUI implements ActionListener{
     
     JPanel central_panel = new JPanel();
     JLabel titolo = new JLabel("CARRELLO");
+    JButton compra = new JButton("Compra");
     
     ArrayList<Cellulare> cellulari;
     int panel_number;
     
     public Carrello_GUI(ArrayList<Cellulare> cellulari){
         this.cellulari = cellulari;
+        
+        compra.addActionListener(this);
         central_panel.setLayout(new BoxLayout(central_panel,BoxLayout.Y_AXIS));
         
         int i = 0;
@@ -60,6 +65,8 @@ public class Carrello_GUI implements ActionListener{
         //--------------------------------------------//
         frame.add(titolo,"North");
         frame.add(central_panel);
+        frame.add(compra,"South");
+        
         frame.pack();
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,36 +76,68 @@ public class Carrello_GUI implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         int i;
         
-        JButton btn = (JButton)e.getSource();
-        JPanel btn_parent = (JPanel)btn.getParent();
-        
-        for(i=0;i<panel_number;i++){
-            if(Integer.parseInt(btn_parent.getName()) == i){
-                // rimuove della lista e dal pannello central_panel il cellulare che ha scaturito l'evento
-                cellulari.remove(i);
-                central_panel.remove(i);
-                panel_number --;
-                break;
-                //-----------------------------------------------------------------------------------------//
+        if(e.getActionCommand().equals("Compra")){
+            /*for(Cellulare elem:cellulari)
+                elem.print();*/
+            if(cellulari.isEmpty())
+                JOptionPane.showMessageDialog(frame,"Il carrello è vuoto non puoi comprare niente !");
+            else{
+                //Da creare nuova classe che esdente JDialog per creare il PopUp della conferma dell'ordine
+                //Codice già iniziato e da migliorare solo aspetto grafico
+                /*RIGE CHE RIMARRANNO SU QUESTA CLASSE*/
+                
+                //**Compra_PopUP popup = new Compra_PopUP(frame);**//
+                //**frame.setVisible(false);**//
+                //**frame.dispose();**// ---> distrugge il frame e rilascia la memoria occupata da esso
+                
+                /*
+                JDialog popUp = new JDialog(frame,"Compra");
+                
+                JLabel messaggio = new JLabel("<html>Stai per acquistare: <br><br>");
+                for(Cellulare elem:cellulari){
+                    messaggio.setText(messaggio.getText() +"Marca: "+elem.getMarca()+" Modello: "+elem.getModello()+" Prezzo: "+elem.getCosto()+"<hr>");
+
+                }
+                popUp.add(messaggio);
+                popUp.setVisible(true);
+                popUp.pack();
+                */
+                //JOptionPane.showMessageDialog(frame,messaggio);
             }
+                
         }
-         
-        // Serve per refreshare il JFrame
-        SwingUtilities.updateComponentTreeUI(frame);
-        //---------------------------------//
-        
-        //rinomina tutti i pannelli dentro a central_panel dato che la loro posizione è cambiata
-        for(i=0;i<panel_number;i++){
-            JPanel PNL_da_rinominare = (JPanel)central_panel.getComponent(i);
-            PNL_da_rinominare.setName(String.valueOf(i));
+        else{
+            JButton btn = (JButton)e.getSource();
+            JPanel btn_parent = (JPanel)btn.getParent();
+
+            for(i=0;i<panel_number;i++){
+                if(Integer.parseInt(btn_parent.getName()) == i){
+                    // rimuove della lista e dal pannello central_panel il cellulare che ha scaturito l'evento
+                    cellulari.remove(i);
+                    central_panel.remove(i);
+                    panel_number --;
+                    break;
+                    //-----------------------------------------------------------------------------------------//
+                }
+            }
+
+            // Serve per refreshare il JFrame
+            SwingUtilities.updateComponentTreeUI(frame);
+            //---------------------------------//
+
+            //rinomina tutti i pannelli dentro a central_panel dato che la loro posizione è cambiata
+            for(i=0;i<panel_number;i++){
+                JPanel PNL_da_rinominare = (JPanel)central_panel.getComponent(i);
+                PNL_da_rinominare.setName(String.valueOf(i));
+            }
+            //----------------------------------------------------------------------------------------//
+
+            /* Stampa della lista per DEBUG
+            System.out.println("-----AGGIORNATO----");
+            for(Cellulare el:cellulari){
+                System.out.println(el.getMarca() + el.getModello());
+            }
+            */
         }
-        //----------------------------------------------------------------------------------------//
-        
-        /* Stampa della lista per DEBUG
-        System.out.println("-----AGGIORNATO----");
-        for(Cellulare el:cellulari){
-            System.out.println(el.getMarca() + el.getModello());
-        }
-        */
     }
 }
