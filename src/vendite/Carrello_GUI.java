@@ -14,9 +14,10 @@ public class Carrello_GUI implements ActionListener{
     JFrame frame = new JFrame("Carrello");
     
     JPanel central_panel = new JPanel();
+    JLabel titolo = new JLabel("CARRELLO");
     
     ArrayList<Cellulare> cellulari;
-    int button_number;
+    int panel_number;
     
     public Carrello_GUI(ArrayList<Cellulare> cellulari){
         this.cellulari = cellulari;
@@ -54,29 +55,29 @@ public class Carrello_GUI implements ActionListener{
             i++;
         }
         
-        //Nubero di bottoni, per ora inutile
-        button_number = i;
-        //----------------------------------//
-        
+        //Nubero di pannelli contenuti in central_panel
+        panel_number = i;
+        //--------------------------------------------//
+        frame.add(titolo,"North");
         frame.add(central_panel);
         frame.pack();
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
-    int rm_bottoni = 0;
     @Override
     public void actionPerformed(ActionEvent e) {
         int i;
+        
         JButton btn = (JButton)e.getSource();
         JPanel btn_parent = (JPanel)btn.getParent();
-        int da_eliminare;
-        for(i=0;i<button_number;i++){
+        
+        for(i=0;i<panel_number;i++){
             if(Integer.parseInt(btn_parent.getName()) == i){
                 // rimuove della lista e dal pannello central_panel il cellulare che ha scaturito l'evento
                 cellulari.remove(i);
                 central_panel.remove(i);
-                button_number --;
+                panel_number --;
                 break;
                 //-----------------------------------------------------------------------------------------//
             }
@@ -87,11 +88,12 @@ public class Carrello_GUI implements ActionListener{
         //---------------------------------//
         
         //rinomina tutti i pannelli dentro a central_panel dato che la loro posizione è cambiata
-        for(i=0;i<button_number;i++){
-            JPanel PNL_da_rinopminare = (JPanel)central_panel.getComponent(i);
-            PNL_da_rinopminare.setName(String.valueOf(i));
+        for(i=0;i<panel_number;i++){
+            JPanel PNL_da_rinominare = (JPanel)central_panel.getComponent(i);
+            PNL_da_rinominare.setName(String.valueOf(i));
         }
         //----------------------------------------------------------------------------------------//
+        
         /* Stampa della lista per DEBUG
         System.out.println("-----AGGIORNATO----");
         for(Cellulare el:cellulari){
