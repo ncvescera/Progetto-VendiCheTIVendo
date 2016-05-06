@@ -41,6 +41,7 @@ public class Main {
         carrello.print();
         
         carrello.show();
+        
     }
 
 }

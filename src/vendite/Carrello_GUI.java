@@ -3,11 +3,8 @@ package vendite;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -79,55 +76,38 @@ public class Carrello_GUI implements ActionListener{
         int i;
         
         if(e.getActionCommand().equals("Compra")){
-            /*for(Cellulare elem:cellulari)
-                elem.print();*/
             if(cellulari.isEmpty())
                 JOptionPane.showMessageDialog(frame,"Il carrello è vuoto non puoi comprare niente ! :(");
             else{
-                //boolean buon_fine = true;
-                //Da creare nuova classe che esdente JDialog per creare il PopUp della conferma dell'ordine
-                //Codice già iniziato e da migliorare solo aspetto grafico
-                /*RIGE CHE RIMARRANNO SU QUESTA CLASSE*/
+                int conferma_popup = 0;
+                String messaggio = "<html>Stai per acquistare: <br><br><table><tr><td>Marca</td><td>Modello</td><td>Prezzo</td></tr>";
+                int totale = 0;
                 
-                //**Compra_PopUP popup = new Compra_PopUP(frame);**//
-                //**frame.setVisible(false);**//
-                //**frame.dispose();**// ---> distrugge il frame e rilascia la memoria occupata da esso
-                
-                /*
-                JDialog popUp = new JDialog(frame,"Compra");
-                
-                JLabel messaggio = new JLabel("<html>Stai per acquistare: <br><br>");
                 for(Cellulare elem:cellulari){
-                    messaggio.setText(messaggio.getText() +"Marca: "+elem.getMarca()+" Modello: "+elem.getModello()+" Prezzo: "+elem.getCosto()+"<hr>");
-
+                    //Costruice il testo da mettere dentro al popup e calcola il costo
+                    messaggio = messaggio +"<tr><td>"+elem.getMarca()+"</td><td>"+elem.getModello()+"</td><td>"+elem.getCosto()+"</td></tr>";
+                    totale += elem.getCosto();
+                    //----------------------------------------------------------------//
                 }
-                popUp.add(messaggio);
-                popUp.setVisible(true);
-                popUp.pack();
-                */
-                //JOptionPane.showMessageDialog(frame,messaggio);
+                messaggio = messaggio+"</table><hr>Totale: "+totale;
                 
-                /*Compra_PopUp popup = new Compra_PopUp(frame, this.cellulari);
+                conferma_popup = JOptionPane.showConfirmDialog(frame,messaggio,"Compra", conferma_popup);
                 
-                System.out.println(popup.stato);
-                
-                cellulari.removeAll(cellulari);
-                System.out.println("Cellulari rimanenti");
-                for(Cellulare el:cellulari){
-                    el.print();
-                }*/
-                
-                /* NUOVA SCOPERTA ( dio somaro )
-                 * La classe che estende JDialog è risultata inutile
-                 * dato che non può ritornare un valore e così non è possibile capire se l'utente 
-                 * ha cliccato su annulla o su conferma.
-                 * Perciò va eliminata la classe Compra_PopUp e usato JOptionPane.showConfirmDialog()
-                
-                
-                int prova = 0;
-                prova = JOptionPane.showConfirmDialog(null,"<html><hr>Io cosa ho premuto ??","ATTENZIONE", prova);
-                System.out.println(prova);
-                */
+                if(conferma_popup == 0){
+                    //Mostra un messaggio di successo ed elimina la lista e il contenuto del carrello
+                    JOptionPane.showMessageDialog(frame,"Ordine completato ! :D");
+                    cellulari.removeAll(cellulari);
+                    while(panel_number!=0){
+                        central_panel.remove(0);
+                        panel_number--;
+                    }
+                    //----------------------------------------------------------------------------//
+                    
+                    // Serve per refreshare il JFrame
+                    SwingUtilities.updateComponentTreeUI(frame);
+                    //---------------------------------//
+
+                } 
             }
                 
         }
@@ -151,10 +131,7 @@ public class Carrello_GUI implements ActionListener{
             //---------------------------------//
 
             //rinomina tutti i pannelli dentro a central_panel dato che la loro posizione è cambiata
-            for(i=0;i<panel_number;i++){
-                JPanel PNL_da_rinominare = (JPanel)central_panel.getComponent(i);
-                PNL_da_rinominare.setName(String.valueOf(i));
-            }
+            rinominaPannelli();
             //----------------------------------------------------------------------------------------//
 
             /* Stampa della lista per DEBUG
@@ -163,6 +140,14 @@ public class Carrello_GUI implements ActionListener{
                 System.out.println(el.getMarca() + el.getModello());
             }
             */
+        }
+    }
+    
+    private void rinominaPannelli(){
+        int i;
+        for(i=0;i<panel_number;i++){
+            JPanel PNL_da_rinominare = (JPanel)central_panel.getComponent(i);
+            PNL_da_rinominare.setName(String.valueOf(i));
         }
     }
 }
