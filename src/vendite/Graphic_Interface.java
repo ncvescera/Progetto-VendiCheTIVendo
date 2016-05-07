@@ -31,6 +31,8 @@ public class Graphic_Interface extends JFrame implements ActionListener {
     
     //Frames
     JFrame f1 = new JFrame();
+    JFrame f_info = new JFrame();
+    JFrame f_carrello = new JFrame();
     
     //Panel
     JPanel brands_Panel = new JPanel();
@@ -44,7 +46,7 @@ public class Graphic_Interface extends JFrame implements ActionListener {
     JButton b1 = new JButton("SAMSUNG");
     JButton b2 = new JButton("Apple");
     JButton b3 = new JButton("Huwawei");
-    JButton b4 = new JButton("𐎡𐎷𐏉𐏌𐎧𐎮");
+    JButton b4 = new JButton("Nokia");
     JButton b5 = new JButton("Sony");
     JButton b6 = new JButton("HTC");
     JButton add_to_cart = new JButton("Add To Cart");
@@ -128,13 +130,35 @@ public class Graphic_Interface extends JFrame implements ActionListener {
         f1.setTitle(titolo_Frame_1);
         f1.setSize(750, 500);
         f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        //Specifiche FRAME_info
+        f_info.setTitle("INFO");
+        f_info.setVisible(false);
+        f_info.setSize(200, 200);
+        f_info.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        //Specifiche FRAME_carrello
+        
+        
+        
+        //Gestione degli EVENTI
+        info_1.addActionListener(this);
+        info_1.setActionCommand("i");
+        
     }
     
     
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        String command = e.getActionCommand();
+        
+        if(command.equals("i"))
+        {
+            f_info.setVisible(true);
+        }
+        
     }
     
     
