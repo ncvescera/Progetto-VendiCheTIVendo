@@ -32,7 +32,7 @@ public class Graphic_Interface extends JFrame implements ActionListener {
     //Frames
     JFrame f1 = new JFrame();
     JFrame f_info = new JFrame();
-    JFrame f_carrello = new JFrame();
+    
     
     //Panel
     JPanel brands_Panel = new JPanel();
@@ -52,6 +52,9 @@ public class Graphic_Interface extends JFrame implements ActionListener {
     JButton add_to_cart = new JButton("Add To Cart");
     JButton info_1 = new JButton("i");
         
+    //TextArea
+    JTextArea txa = new JTextArea();
+    
     //TextField
     JTextField quantita_prod1 = new JTextField();
     
@@ -135,7 +138,8 @@ public class Graphic_Interface extends JFrame implements ActionListener {
         f_info.setTitle("INFO");
         f_info.setVisible(false);
         f_info.setSize(200, 200);
-        f_info.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        
         
         //Specifiche FRAME_carrello
         
