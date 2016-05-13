@@ -9,7 +9,9 @@ public class ButtonMenuBar extends JPanel implements ActionListener{
     
     private final JButton[] bottoni;
     private final String[] nomi_bottoni;
+    //private JPanel da_riempire;
     
+    //public ButtonMenuBar(JPanel da_riempire){ //costruttore che riempirà il pannello vuoti all'evento click su uno dei bottoni creati
     public ButtonMenuBar(){
         bottoni = ButtonMaker.make();
         nomi_bottoni = ButtonMaker.getNames();
@@ -20,10 +22,13 @@ public class ButtonMenuBar extends JPanel implements ActionListener{
         }
     }
     
-    
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for(String nome:nomi_bottoni){
+            if(e.getActionCommand().equals(nome)){
+                System.out.println(nome);
+            }
+        }
     }
 
 }
