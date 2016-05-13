@@ -2,6 +2,9 @@ package vendite;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -23,10 +26,30 @@ public class ButtonMenuBar extends JPanel implements ActionListener{
     }
     
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e){
         for(String nome:nomi_bottoni){
             if(e.getActionCommand().equals(nome)){
-                System.out.println(nome);
+                ArrayList<Cellulare> cellulari = new ArrayList<>();
+                
+                try {
+                    ReadFile reader = new ReadFile("brands/"+e.getActionCommand());
+                    
+                    for(int i=0;i<reader.EOF;i++){
+                        cellulari.add(new Cellulare(CSV.parse(reader.read(),";")));
+                    }
+                    
+                    for(Cellulare elem:cellulari){
+                        elem.print();
+                    }
+                    
+                    //System.out.println(nome);
+                } catch (Exception ex) {
+                    Logger.getLogger(ButtonMenuBar.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                //for(int i=0;i<reader;i++){
+                 
+                //}
             }
         }
     }
