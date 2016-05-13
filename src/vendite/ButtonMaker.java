@@ -4,14 +4,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 
 //classe per creare bottoni da file
-public class ButtonMaker extends JFrame {
+public final class ButtonMaker {
     
-    
+    private static String[] NAMES;
     
     public static JButton[] make() {
         File f = new File("brands");
@@ -19,6 +16,8 @@ public class ButtonMaker extends JFrame {
         
         String[] button_name = new String[names.size()];
         names.toArray(button_name);
+        
+        NAMES = button_name;
         
         ArrayList<JButton> btnTemp = new ArrayList();
         
@@ -30,6 +29,10 @@ public class ButtonMaker extends JFrame {
         btnTemp.toArray(da_ritornare);
         
         return da_ritornare;
+    }
+    
+    public static String[] getNames(){
+        return NAMES;
     }
     
     
