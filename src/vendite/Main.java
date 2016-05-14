@@ -1,6 +1,7 @@
 package vendite;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -21,9 +22,15 @@ public class Main {
         jf.setSize(500,500);
         */
         JFrame frame = new JFrame();
-        ButtonMenuBar menu_bar = new ButtonMenuBar();
+        PanelMain main = new PanelMain();
         
-        frame.add(menu_bar);
+        ButtonMenuBar menu_bar = new ButtonMenuBar(main);
+        
+        main.make();
+        
+        
+        frame.add(menu_bar,"North");
+        frame.add(main,"Center");
         
         frame.setVisible(true);
         frame.pack();
