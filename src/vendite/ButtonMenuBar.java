@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 
 public class ButtonMenuBar extends JPanel implements ActionListener{
     
@@ -48,6 +51,8 @@ public class ButtonMenuBar extends JPanel implements ActionListener{
                     da_riempire.clear();
                     da_riempire.make();
                     
+                    resizeParentFrame();
+                    
                     //System.out.println(nome);
                 } catch (Exception ex) {
                     Logger.getLogger(ButtonMenuBar.class.getName()).log(Level.SEVERE, null, ex);
@@ -56,6 +61,14 @@ public class ButtonMenuBar extends JPanel implements ActionListener{
                 vecchio = e.getActionCommand();
             }
         }
+    }
+    
+    private void resizeParentFrame(){
+        JPanel panel = (JPanel)da_riempire.getParent();
+        JLayeredPane layeredPane = (JLayeredPane)panel.getParent();
+        JRootPane rootPane = (JRootPane)layeredPane.getParent();
+        JFrame frame = (JFrame)rootPane.getParent();
+        frame.pack();
     }
 
 }
