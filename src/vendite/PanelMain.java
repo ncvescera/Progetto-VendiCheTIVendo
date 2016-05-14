@@ -33,8 +33,7 @@ public class PanelMain extends JPanel implements ActionListener{
             temp.setActionCommand(String.valueOf(i));
             temp.addActionListener(this);
             this.add(temp);
-            i++;
-            
+            i++; 
         }
         
         SwingUtilities.updateComponentTreeUI(this);
@@ -46,6 +45,7 @@ public class PanelMain extends JPanel implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println(e.getActionCommand());
+        System.out.println(e.getActionCommand()+"--------------------------------------");
+        cellulari.get(Integer.valueOf(e.getActionCommand())).print();
     }
 }
