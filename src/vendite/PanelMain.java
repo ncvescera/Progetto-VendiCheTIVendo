@@ -23,11 +23,18 @@ public class PanelMain extends JPanel implements ActionListener{
     }
     
     public void make(){
+        int i = 0;
+        JButton temp;
         for(Cellulare cell:cellulari){
             this.add(new JLabel(cell.getModello()));
             this.add(new JLabel(String.valueOf(cell.getCosto())));
             this.add(new JLabel(cell.getDescrizione()));
-            this.add(new JButton("Compra"));
+            temp = new JButton("Compra");
+            temp.setActionCommand(String.valueOf(i));
+            temp.addActionListener(this);
+            this.add(temp);
+            i++;
+            
         }
         
         SwingUtilities.updateComponentTreeUI(this);
@@ -39,6 +46,6 @@ public class PanelMain extends JPanel implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println(e.getActionCommand());
     }
 }

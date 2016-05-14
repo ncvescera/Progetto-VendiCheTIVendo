@@ -47,16 +47,13 @@ public class ButtonMenuBar extends JPanel implements ActionListener{
                     da_riempire.add(cellulari);
                     da_riempire.clear();
                     da_riempire.make();
+                    
                     //System.out.println(nome);
                 } catch (Exception ex) {
                     Logger.getLogger(ButtonMenuBar.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
                 vecchio = e.getActionCommand();
-                
-                //for(int i=0;i<reader;i++){
-                 
-                //}
             }
         }
     }

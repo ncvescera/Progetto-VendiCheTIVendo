@@ -26,8 +26,7 @@ public class Main {
         
         ButtonMenuBar menu_bar = new ButtonMenuBar(main);
         
-        main.make();
-        
+        //main.make();
         
         frame.add(menu_bar,"North");
         frame.add(main,"Center");
